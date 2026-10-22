@@ -1,3 +1,5 @@
+# AdaQuiz — Projet Fabiola/Sidonie
+Quizz Time - Ressources Naturelles et Mets Cullinaires
 # AdaQuiz — Projet de départ
 
 Bienvenue sur le projet de départ AdaQuiz ! Ce repo contient la structure de base du quiz. À vous de le compléter.

@@ -1,8 +1,78 @@
 /* ════════════════════════════════════════════
    ADAQUIZ — style.css
 ════════════════════════════════════════════ */
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+
+body{
+  background-image: url(assets/background.png);
+  background-color: rgb(253, 243, 233);
+  min-height: 100svh;
+  background-repeat: no-repeat;
+  background-position: center top;
+  padding-inline: 40px;
+  background-size: 100% 100%;
+  color: black;
+     }
 
 /* La classe .cache masque un écran */
 .cache {
   display: none;
+}
+
+/* ***********************HEADER ET FOOTER ************************/
+header{
+  border-radius: 0 0 10px 10px;
+}
+
+header, footer{
+  padding: 10px;
+  font-weight: 900;
+  border: 1px solid rgb(127, 197, 196);
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+footer{
+  border-radius: 10px 10px 0 0;
+  font-size: 1.1rem;
+}
+
+footer p{
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.nav-links, .social-links{
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.nav-links > :not(h1){
+  font-size: 1.1rem;
+}
+
+.social-links li{
+  text-align: center;
+}
+
+ul{
+  list-style-type: none;
+}
+
+li{
+  padding: 20px;
+}
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+/************************ SECTION QUESTION ************************/
+#ecran-question{
+  
 }

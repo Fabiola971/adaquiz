@@ -20,7 +20,7 @@
   {
     "id": 4,
     "question": "Quel est le pays producteur n°1 de Karité ?",
-    "reponses": ["La côte d'ivoire", "Le Gabon", "La République Centre-Africaine", "La France"],
+    "reponses": ["Le Nigéria", "Le Gabon", "La République Centre-Africaine", "La France"],
     "bonne_reponse": 1
   },
   {
@@ -32,7 +32,7 @@
   {
     "id": 6,
     "question": "Retrouve un ingrédient du tajine?",
-    "reponses": ["Le riz", "Les spaghettis", "La semoule", "L'Emmental"],
+    "reponses": ["Le riz", "Les spaghettis", "L'agneau", "L'Emmental"],
     "bonne_reponse": 3
   },
   {

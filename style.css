@@ -169,3 +169,71 @@ form input{
   border-radius: 10px 0 0 10px; 
   transition: width 0.4s ease-in-out; /* Animation fluide */
 }
+
+@media (min-width:768px) {
+  .question  h2{
+    font-size: 2rem;
+  } 
+
+  .avancement-question{
+    font-size: 1rem;
+  }
+
+  .réponse-question{
+    display: flex;
+  }
+
+  .image-acc {
+    height:251px;
+  }
+
+  .image-acc img{
+    height: 251px;
+  }
+
+  form{
+    width: 50%;
+    border: 0.1px solid rgb(127, 197, 196);
+  }
+}
+
+@media(min-width:1024px){
+  body{
+    padding-inline: 0;
+  }
+
+  .question  h2{
+    font-size: 2.5rem;
+  }
+
+  .image-acc {
+    width: 100%;
+    height:251px;
+  }
+
+  form{
+    height: 100%;
+    width: 100%;
+  }
+
+  main{
+    padding-inline: 100px;
+  }
+
+  .validation-réponse .commentaires-réponses button{
+    width: 50%;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+
+  .progress-container {
+    width: 50%;
+    height: 12px;
+  }
+
+  .barre-progression{
+    display: flex;
+    justify-content: center;
+  }
+}

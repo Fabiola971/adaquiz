@@ -106,24 +106,20 @@ a{
   height: 100%;
 }
 
-form{
+.input-question{
   max-width: 100%;
 }
 
-form input{
+.input-question input{
   width: 100%;
   margin-bottom: 5px;
   border: 0.5px solid rgb(127, 197, 196);
 }
 
-.input-question{
-  list-style-type: none;
-}
-
 .input-question li{
   border: 1px solid rgb(127, 197, 196);
   background-color: rgb(255, 253, 253, 0.8);
-  padding: 20px;
+  padding: 30px;
   cursor: pointer;
 }
 
@@ -173,7 +169,15 @@ form input{
 @media (min-width:768px) {
   .question  h2{
     font-size: 2rem;
-  } 
+  }
+
+  .input-question{
+    width: 50%;
+  }
+
+  .input-question li{
+    margin-block: 1.5px;
+  }
 
   .avancement-question{
     font-size: 1rem;
@@ -211,8 +215,8 @@ form input{
     height:251px;
   }
 
-  form{
-    height: 100%;
+  .input-question{
+    /* height: 100%; */
     width: 100%;
   }
 

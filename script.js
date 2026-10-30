@@ -1,3 +1,12 @@
+
+// questions vient de questions.js
+console.log(questions.length + " questions")
+
+questions.forEach((question, index) => {
+  console.log("Question " + (index + 1) + " : " + question.question)
+  console.log(`Image ${question.image}`)
+  console.log("Bonne réponse : " + question.reponses[question.bonneReponse])
+})
 // ════════════════════════════════════════════
 //   ADAQUIZ — script.js
 //   Certaines fonctions sont déjà écrites.
@@ -17,23 +26,13 @@ const btnCommencer = document.getElementById('btn-commencer')
 // Ces variables stockent les données en cours de partie.
 // Tu n'as pas besoin de les modifier.
 
-let questions = []   // tableau des questions chargées depuis le JSON
+// let questions = []   // tableau des questions chargées depuis le JSON
 let indexCourant = 0    // numéro de la question en cours (commence à 0)
 let score = 0    // nombre de bonnes réponses
 
 
-// ── Chargement du JSON ───────────────────────
-// Cette fonction est déjà écrite.
-// Elle charge le fichier questions.json et remplit l'écran d'accueil.
 
-fetch('questions.json')
-  .then(response => response.json())
-  .then(data => {
-    questions = data
-    titreQuiz.textContent = 'AdaQuiz'
-    descriptionQuiz.textContent = 'Ton quiz personnalisé'
-    nbQuestions.textContent = questions.length + ' questions'
-  })
+
 
 
 // ── Navigation entre les écrans ──────────────

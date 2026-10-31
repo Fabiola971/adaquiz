@@ -1,12 +1,3 @@
-
-// questions vient de questions.js
-console.log(questions.length + " questions")
-
-questions.forEach((question, index) => {
-  console.log("Question " + (index + 1) + " : " + question.question)
-  console.log(`Image ${question.image}`)
-  console.log("Bonne réponse : " + question.reponses[question.bonneReponse])
-})
 // ════════════════════════════════════════════
 //   ADAQUIZ — script.js
 //   Certaines fonctions sont déjà écrites.
@@ -18,7 +9,33 @@ questions.forEach((question, index) => {
 // Ces lignes récupèrent les éléments HTML par leur id.
 // Tu n'as pas besoin de les modifier.
 
-const btnCommencer = document.getElementById('btn-commencer')
+const btnCommencer = document.getElementById('btn-commencer');
+const btnRecommencer = document.getElementById('btn-recommencer');
+const questionEnCours = document.getElementById('question-en-cours');
+// ECRAN
+const ecranAccueil = document.getElementById('ecran-accueil');
+const ecranQuestion = document.getElementById('ecran-question');
+const ecranResultats = document.getElementById('ecran-resultats');
+
+const texteQuestion = document.getElementById('texte-question');
+const totalQuestions = document.getElementById('total-question');
+const enCoursQuestion = document.getElementById('question-actuelle');
+
+const scoreDynamique = document.getElementById('score');
+console.log(scoreDynamique);
+const scoreFinal = document.getElementById('score-final');
+const scoreMaximum = document.getElementById('score-maximum');
+
+const listeReponses = document.getElementById('input-question');
+const resutatMessage = document.getElementById('resultat-message');
+
+const btnSuivante = document.getElementById('btn-suivante');
+
+
+const progressBar = document.getElementById('progress-bar');
+console.log(progressBar);
+
+const resultatMessage = document.getElementById('resultat-message');
 //... Crée autant de constantes que d'éléments HTML à récupérer
 
 
@@ -29,8 +46,24 @@ const btnCommencer = document.getElementById('btn-commencer')
 // let questions = []   // tableau des questions chargées depuis le JSON
 let indexCourant = 0    // numéro de la question en cours (commence à 0)
 let score = 0    // nombre de bonnes réponses
+let reponsesDesactive = false;
+// btnCommencer.addEventListener("click", () =>{
+//   afficher(ecranQuestion);
+// })
+// btnSuivante.addEventListener("click", questionSuivante);
+// btnRecommencer.addEventListener("click", recommencer)
+btnCommencer.addEventListener("click", () =>{
+  lire()
+  afficher(ecranAccueil);
+})
 
-
+const lire = () =>{
+  indexCourant = 0;
+  score = 0; 
+  scoreDynamique.textContent = score;
+  // btnCommencer.addEventListener("click", () =>{
+  // afficher(ecranAccueil, ecranQuestion);
+}
 
 
 
@@ -39,11 +72,12 @@ let score = 0    // nombre de bonnes réponses
 // Cette fonction est déjà écrite.
 // Elle cache tous les écrans puis affiche celui qu'on lui donne.
 
-const afficher = (ecran) => {
+const afficher = () => {
   ecranAccueil.classList.add('cache')
-  ecranQuestion.classList.add('cache')
+  // ecranAccueil.classList.remove('cache')
+  ecranQuestion.classList.remove('cache')
   ecranResultats.classList.add('cache')
-  ecran.classList.remove('cache')
+  // ecran.classList.remove('cache')
 }
 
 
@@ -65,10 +99,30 @@ const afficher = (ecran) => {
 //   6. Vider #liste-reponses, puis créer un bouton pour chaque réponse
 //      Chaque bouton doit appeler verifierReponse() au clic
 
+// const afficherQuestion = () => {
+//   // Écris ton code ici
+// }
 const afficherQuestion = () => {
-  // Écris ton code ici
-}
+  reponsesDesactive = false;
+  const q = questions[indexCourant];
+  enCoursQuestion.textContent = indexCourant + 1
+  texteQuestion.textContent = q.question;  // modifier
 
+  listeReponses.innerHTML = "";            // vider
+
+  q.reponses.forEach((reponse, index) => {
+    const btn = document.createElement("button"); // créer
+    btn.textContent = reponse;
+
+    btn.classList.add("btn-reponse");          // modifier
+    const estLaBonne = (index === q.bonneReponse)
+    btn.dataset.correct = estLaBonne;
+    btn.addEventListener("click", () => {  // écouter
+      verifierReponse(index)
+    })
+    listeReponses.appendChild(btn)             // insérer
+  })
+}
 
 // ── TODO : verifierReponse ───────────────────
 // Cette fonction est appelée quand une apprenante clique sur une réponse.
@@ -84,9 +138,38 @@ const afficherQuestion = () => {
 
 const verifierReponse = (indexChoisi) => {
   // Écris ton code ici
-}
+  if(reponsesDesactive) return
+  reponsesDesactive = true;
 
+  const boutonChoisi = listeReponses.children[indexChoisi];
+  const estCorrect = boutonChoisi.dataset.correct;
 
+  if(estCorrect){
+      boutonChoisi.classList.add("correct");
+      score++;
+      scoreDynamique.textContent = score;
+    }else{
+      boutonChoisi.classList.add("incorrect");
+      Array.from(listeReponses.children).forEach((button)=>{
+        if(button.dataset.correct === "true"){
+          button.classList("correct");
+        }
+      });
+    }
+    btnSuivante.classList.remove("cache");
+};
+
+  btnSuivante.addEventListener("click", () => {
+    indexCourant++;
+    if (indexCourant < questions.length) {
+      afficherQuestion();
+      btnSuivante.classList.add("cache"); 
+    } else {
+      afficherResultats(); 
+    }
+  });
+
+  
 // ── TODO : afficherResultats ─────────────────
 // Cette fonction est appelée quand toutes les questions ont été répondues.
 //
@@ -97,7 +180,28 @@ const verifierReponse = (indexChoisi) => {
 
 const afficherResultats = () => {
   // Écris ton code ici
-}
+  afficher(ecranResultats);
+  scoreFinal.textContent = score;
+  scoreMaximum.textContent = questions.length;
+
+  const percentage = (score / questions.question.length)*100;
+  if(percentage === 100){
+    resultatMessage.textContent = "Parfait";
+  }else if(percentage >= 80){
+    resultatMessage.textContent = "Bon travail";
+  }else if(percentage >= 60){
+    resultatMessage.textContent = "Pas mal";
+  }else if(percentage >= 40){
+    resultatMessage.textContent = "Essaie encore";
+  }else{
+    resultatMessage.textContent = "Entraîne toi plus souvent"
+  }  
+};
+
+btnRecommencer.addEventListener("click", () =>{
+  afficher(ecranAccueil);
+
+})
 
 
 // ── TODO : écouteurs d'événements ───────────

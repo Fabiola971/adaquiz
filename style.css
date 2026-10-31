@@ -68,12 +68,49 @@ li{
   padding: 20px;
 }
 
+li:hover, .input-question input:hover {
+  background-color: rgba(184, 237, 235, 0.2);
+}
+
 a{
   text-decoration: none;
   cursor: pointer;
 }
+
+/*************************** ACCUEIL ***************************/
+h2, h3{
+  text-align: center;
+}
+
+.container-image-ecran-accueil{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.container-image-ecran-accueil img{
+  width: 50%;
+}
+
+.container-bouton, .container-instruction{
+  text-align: center;
+}
+
+.container-instruction{
+  margin-block: 10px;
+}
+
+.container-bouton button, #ecran-resultats button{
+  border: 0.5px solid grey;
+  color: white;
+  background-color: rgb(127, 197, 196);
+  padding: 12px;
+  border-radius: 10px 20px;
+  margin-bottom: 5px;
+}
+
 /*************************** QUESTION ***********************/
-#ecran-question{
+#ecran-question, #ecran-accueil, #ecran-resultats{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: rgba(255, 255, 255, 0.75);
   border-radius: 10px;
@@ -110,25 +147,38 @@ a{
   max-width: 100%;
 }
 
-.input-question input{
-  width: 100%;
-  margin-bottom: 5px;
-  border: 0.5px solid rgb(127, 197, 196);
-}
-
-.input-question li{
+#input-question li{
   border: 1px solid rgb(127, 197, 196);
   background-color: rgb(255, 253, 253, 0.8);
   padding: 30px;
   cursor: pointer;
 }
 
-.input-question input{
+#input-question button{
+  width: 100%;
   border: 1px solid rgb(127, 197, 196);
   background-color: rgb(255, 253, 253, 0.8);
-  padding: 20px;
+  padding: 30px;
+  margin-block: 2px;
   cursor: pointer;
 }
+
+#input-question button:hover{
+  background-color: rgba(184, 237, 235, 0.2);
+}
+
+.btn-reponse.correct{
+  background-color: #e6fff0;
+  border-color: #a3f0c4;
+  color: #28a745;
+}
+
+.btn-reponse.incorrect{
+  background-color: #fff0f0;
+  border-color: #ffbdbd;
+  color: #dc35dc45;
+}
+
 
 .validation-réponse{
   display: flex;
@@ -153,7 +203,7 @@ a{
 .progress-container {
   width: 100%;
   height: 12px;
-  background-color:grey; /* <-- Changez la couleur de fond ici */
+  background-color:grey; 
   border-radius: 10px;
   overflow: hidden; /* Empêche la barre interne de dépasser des coins arrondis */
 }
@@ -164,6 +214,32 @@ a{
   background-color: rgb(127, 197, 196); 
   border-radius: 10px 0 0 10px; 
   transition: width 0.4s ease-in-out; /* Animation fluide */
+  width: 0%;
+}
+/************************************** ECRAN RESULTAT ****************************************/
+.container-titre h2{
+  text-align: center;
+}
+
+.container-titre-ecran-resultat, .container-score, .container-recommencer{
+  text-align: center;
+}
+
+.container-score{
+  display: flex;
+  flex-direction: column;
+}
+
+.container-score p:first-of-type {
+  background-color: rgb(127, 197, 196, 0.2);
+  font-size: 2rem;
+  width: 50%;
+  padding: 20px;
+  margin-left: 25%;
+}
+
+#resultat-message{
+  padding-block: 10px;
 }
 
 @media (min-width:768px) {
@@ -171,11 +247,13 @@ a{
     font-size: 2rem;
   }
 
-  .input-question{
-    width: 50%;
+  #input-question{
+    width: 100%;
   }
 
-  .input-question li{
+  
+
+  #input-question button{
     margin-block: 1.5px;
   }
 
@@ -194,11 +272,6 @@ a{
   .image-acc img{
     height: 251px;
   }
-
-  form{
-    width: 50%;
-    border: 0.1px solid rgb(127, 197, 196);
-  }
 }
 
 @media(min-width:1024px){
@@ -215,10 +288,6 @@ a{
     height:251px;
   }
 
-  .input-question{
-    /* height: 100%; */
-    width: 100%;
-  }
 
   main{
     padding-inline: 100px;

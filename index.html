@@ -23,7 +23,20 @@
                ÉCRAN 1 — ACCUEIL
                Affiché au départ. Caché quand on clique sur "Commencer".
           ════════════════════════════════════════ -->
-          <section id="ecran-accueil" class="ecran">
+          <section id="ecran-accueil" class="ecran ">
+               <article class="container-titre">
+                    <h2>AdaQuiz</h2>
+                    <h3>Ressources naturelles et mets culinaires</h3>
+               </article>
+               <picture class="container-image-ecran-accueil">
+                    <img src="assets/visuel-ecran-accueil.jpeg" alt="">
+               </picture>
+               <article class="container-instruction">
+                    <p>Appuie sur la bonne réponse</p> 
+               </article>
+               <article class="container-bouton">
+                   <button id="btn-commencer">START QUIZZ</button> 
+               </article>
           </section>
 
           <!-- ═══════════════════════════════════════
@@ -32,33 +45,33 @@
           ════════════════════════════════════════ -->
           <section id="ecran-question" class="ecran ache">
                <article class="question">
-                    <h2>De quel pays est originaire le tchep ?</h2>
+                    <h2 id="texte-question">De quel pays est originaire le tchep ?</h2>
                </article>
                <article class="avancement-question">
-                    <p>Question <span class="question-actuelle">1</span>sur <span>10</span></p>
-                    <p>Score: <span class="score">0</span></p>
+                    <p>Question <span id="question-actuelle">1 </span> sur <span>10</span></p>
+                    <p>Score: <span id="score">0</span></p>
                </article>
                <article class="réponse-question">
                     <picture class="image-acc">
                          <img src="assets/plat-tchep-poisson.jpeg" alt="plat de tchep au poisson encore fumant">
                     </picture>
-                    <ul class="input-question">
-                         <li></li>
-                         <li></li>
-                         <li></li>
-                         <li></li>
+                    <ul id="input-question">
+                         <button></button>
+                         <button></button>
+                         <button></button>
+                         <button></button>
                     </ul>
                </article>
                <article class="validation-réponse">
                     <aside class="commentaires-réponses">
                          <p>Bon choix ou mauvais choix</p>
-                         <button type="button">suivante</button>
+                         <button type="button" id="btn-suivante">suivante</button>
                     </aside>
                     <aside class="barre-progression">
                          <!-- Le conteneur : c'est ici que vous changez la couleur de fond -->
                          <div class="progress-container">
                          <!-- La barre d'avancement : c'est ici que vous changez la couleur de remplissage -->
-                              <div class="progress-bar" style="width: 10%;"></div>
+                              <div id="progress-bar" style="width: 10%;"></div>
                          </div>
                     </aside>
                </article>
@@ -69,6 +82,17 @@
                Caché au départ. Affiché à la fin du quiz.
           ════════════════════════════════════════ -->
           <section id="ecran-resultats" class="ecran cache">
+               <article class="container-titre-ecran-resultat">
+                    <h2>AdaQuiz</h2>
+                    <h3>Résultat</h3>
+               </article>
+               <article class="container-score">
+                    <p><span id="score-final">10</span>/<span id="score-maximum">10</span></p>
+                    <p id="resultat-message">Good job</p>
+               </article>
+               <article class="container-recommencer">
+                    <button id="btn-recommencer">Recommencer</button>
+               </article>
           </section>
 
      </main>

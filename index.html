@@ -23,7 +23,7 @@
                ÉCRAN 1 — ACCUEIL
                Affiché au départ. Caché quand on clique sur "Commencer".
           ════════════════════════════════════════ -->
-          <section id="ecran-accueil" class="ecran ">
+          <section id="ecran-accueil" class=""> 
                <article class="container-titre">
                     <h2>AdaQuiz</h2>
                     <h3>Ressources naturelles et mets culinaires</h3>
@@ -43,7 +43,7 @@
                ÉCRAN 2 — QUESTION
                Caché au départ. Affiché pendant le quiz.
           ════════════════════════════════════════ -->
-          <section id="ecran-question" class="ecran ache">
+          <section id="ecran-question" class="ecran cache">
                <article class="question">
                     <h2 id="texte-question">De quel pays est originaire le tchep ?</h2>
                </article>
@@ -52,8 +52,8 @@
                     <p>Score: <span id="score">0</span></p>
                </article>
                <article class="réponse-question">
-                    <picture class="image-acc">
-                         <img src="assets/plat-tchep-poisson.jpeg" alt="plat de tchep au poisson encore fumant">
+                    <picture class="container-image-question">
+                         <img id="image-question" src="assets/plat-tchep-poisson.jpeg" alt="plat de tchep au poisson encore fumant">
                     </picture>
                     <ul id="input-question">
                          <button></button>
@@ -63,15 +63,15 @@
                     </ul>
                </article>
                <article class="validation-réponse">
-                    <aside class="commentaires-réponses">
-                         <p>Bon choix ou mauvais choix</p>
+                    <aside id="commentaires-réponses">
+                         <p id="commentaires"></p>
                          <button type="button" id="btn-suivante">suivante</button>
                     </aside>
                     <aside class="barre-progression">
                          <!-- Le conteneur : c'est ici que vous changez la couleur de fond -->
                          <div class="progress-container">
                          <!-- La barre d'avancement : c'est ici que vous changez la couleur de remplissage -->
-                              <div id="progress-bar" style="width: 10%;"></div>
+                              <div id="progress-bar" style="width: 0%;"></div>
                          </div>
                     </aside>
                </article>
@@ -87,7 +87,7 @@
                     <h3>Résultat</h3>
                </article>
                <article class="container-score">
-                    <p><span id="score-final">10</span>/<span id="score-maximum">10</span></p>
+                    <p><span id="score-final"></span>/<span id="score-maximum"></span></p>
                     <p id="resultat-message">Good job</p>
                </article>
                <article class="container-recommencer">

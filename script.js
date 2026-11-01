@@ -16,13 +16,16 @@ const questionEnCours = document.getElementById('question-en-cours');
 const ecranAccueil = document.getElementById('ecran-accueil');
 const ecranQuestion = document.getElementById('ecran-question');
 const ecranResultats = document.getElementById('ecran-resultats');
+const ecran = document.querySelector('.ecran');
+console.log("Écran :", ecran);
 
+const imageQuestion = document.getElementById('image-question')
 const texteQuestion = document.getElementById('texte-question');
 const totalQuestions = document.getElementById('total-question');
 const enCoursQuestion = document.getElementById('question-actuelle');
+const commentaireQuestion = document.getElementById('commentaires');
 
 const scoreDynamique = document.getElementById('score');
-console.log(scoreDynamique);
 const scoreFinal = document.getElementById('score-final');
 const scoreMaximum = document.getElementById('score-maximum');
 
@@ -33,7 +36,6 @@ const btnSuivante = document.getElementById('btn-suivante');
 
 
 const progressBar = document.getElementById('progress-bar');
-console.log(progressBar);
 
 const resultatMessage = document.getElementById('resultat-message');
 //... Crée autant de constantes que d'éléments HTML à récupérer
@@ -53,16 +55,15 @@ let reponsesDesactive = false;
 // btnSuivante.addEventListener("click", questionSuivante);
 // btnRecommencer.addEventListener("click", recommencer)
 btnCommencer.addEventListener("click", () =>{
-  lire()
-  afficher(ecranAccueil);
+  lire();
+  afficher(ecranQuestion);
+  afficherQuestion();
 })
 
 const lire = () =>{
   indexCourant = 0;
   score = 0; 
   scoreDynamique.textContent = score;
-  // btnCommencer.addEventListener("click", () =>{
-  // afficher(ecranAccueil, ecranQuestion);
 }
 
 
@@ -72,12 +73,16 @@ const lire = () =>{
 // Cette fonction est déjà écrite.
 // Elle cache tous les écrans puis affiche celui qu'on lui donne.
 
-const afficher = () => {
+const afficher = (ecranAAfficher) => {
   ecranAccueil.classList.add('cache')
   // ecranAccueil.classList.remove('cache')
-  ecranQuestion.classList.remove('cache')
+  ecranQuestion.classList.add('cache')
+  // ecranQuestion.classList.add('cache')
   ecranResultats.classList.add('cache')
-  // ecran.classList.remove('cache')
+  // ecranResultats.classList.toggle('cache')
+  // ecranResultats.classList.remove('cache')
+  ecranAAfficher.classList.remove('cache');
+
 }
 
 
@@ -105,10 +110,14 @@ const afficher = () => {
 const afficherQuestion = () => {
   reponsesDesactive = false;
   const q = questions[indexCourant];
+  // const progressPercent = (indexCourant + 1) / questions.length * 100;
+  // progressBar.style.width = progressPercent + "%";
   enCoursQuestion.textContent = indexCourant + 1
   texteQuestion.textContent = q.question;  // modifier
-
+  imageQuestion.src = q.image;
+  
   listeReponses.innerHTML = "";            // vider
+  commentaireQuestion.textContent = "";
 
   q.reponses.forEach((reponse, index) => {
     const btn = document.createElement("button"); // créer
@@ -119,6 +128,7 @@ const afficherQuestion = () => {
     btn.dataset.correct = estLaBonne;
     btn.addEventListener("click", () => {  // écouter
       verifierReponse(index)
+
     })
     listeReponses.appendChild(btn)             // insérer
   })
@@ -142,17 +152,21 @@ const verifierReponse = (indexChoisi) => {
   reponsesDesactive = true;
 
   const boutonChoisi = listeReponses.children[indexChoisi];
-  const estCorrect = boutonChoisi.dataset.correct;
+  const estCorrect = (boutonChoisi.dataset.correct === "true");
 
   if(estCorrect){
       boutonChoisi.classList.add("correct");
       score++;
       scoreDynamique.textContent = score;
+      commentaireQuestion.textContent = "Bonne réponse !";
     }else{
       boutonChoisi.classList.add("incorrect");
+      // commentaireQuestion.classList.add("incorrect");
+      commentaireQuestion.textContent = "Mauvaise réponse !";
+    
       Array.from(listeReponses.children).forEach((button)=>{
         if(button.dataset.correct === "true"){
-          button.classList("correct");
+          button.classList.add("correct");
         }
       });
     }
@@ -161,10 +175,13 @@ const verifierReponse = (indexChoisi) => {
 
   btnSuivante.addEventListener("click", () => {
     indexCourant++;
+    console.log("Index actuel :", indexCourant, "Nombre de questions :", questions.length);
     if (indexCourant < questions.length) {
       afficherQuestion();
       btnSuivante.classList.add("cache"); 
     } else {
+      console.log("Le protocole est terminé, passage aux résultats !");
+      // btnSuivante.classList.add("cache");
       afficherResultats(); 
     }
   });
@@ -184,7 +201,7 @@ const afficherResultats = () => {
   scoreFinal.textContent = score;
   scoreMaximum.textContent = questions.length;
 
-  const percentage = (score / questions.question.length)*100;
+  const percentage = (score / questions.length)*100;
   if(percentage === 100){
     resultatMessage.textContent = "Parfait";
   }else if(percentage >= 80){

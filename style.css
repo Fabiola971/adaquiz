@@ -17,7 +17,10 @@ body{
   padding-inline: 40px;
   background-size: 100% 100%;
   color: black;
-     }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 /* La classe .cache masque un écran */
 .cache{
